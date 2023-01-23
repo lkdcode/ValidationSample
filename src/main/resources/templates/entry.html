@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{title.entry}">제목</title>
+</head>
+<body>
+<form th:action="@{/calc}" method="post" th:object="${calcForm}">
+    <div>
+        <input type="text" th:field="*{leftNumber}">
+        +
+        <input type="text" th:field="*{rightNumber}">
+    </div>
+    <button type="submit" th:text="#{button.send}"></button>
+
+<!--    <input type="submit" value="계산">-->
+    <!-- 에러 표시 -->
+    <ul th:if="${#fields.hasErrors('*')}">
+        <li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+    </ul>
+
+</form>
+
+</body>
+</html>
